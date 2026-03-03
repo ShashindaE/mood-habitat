@@ -12,6 +12,10 @@ import { GeistMono } from 'geist/font/mono'
 import React from 'react'
 import './globals.css'
 
+// Force all pages to render dynamically so no DB queries run during `next build`.
+// On a fresh deployment, Payload initializes the DB schema on first runtime request.
+export const dynamic = 'force-dynamic'
+
 /* const { SITE_NAME, TWITTER_CREATOR, TWITTER_SITE } = process.env
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
