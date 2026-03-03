@@ -85,12 +85,12 @@ export function CartModal() {
                   if (isVariant) {
                     price = variant?.priceInUSD
 
-                    const imageVariant = product.gallery?.find((item) => {
-                      if (!item.variantOption) return false
+                    const imageVariant = product.gallery?.find((galleryItem) => {
+                      if (!galleryItem.variantOption) return false
                       const variantOptionID =
-                        typeof item.variantOption === 'object'
-                          ? item.variantOption.id
-                          : item.variantOption
+                        typeof galleryItem.variantOption === 'object'
+                          ? galleryItem.variantOption.id
+                          : galleryItem.variantOption
 
                       const hasMatch = variant?.options?.some((option) => {
                         if (typeof option === 'object') return option.id === variantOptionID
