@@ -1,4 +1,5 @@
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import {
   BoldFeature,
   EXPERIMENTAL_TableFeature,
@@ -82,7 +83,15 @@ export default buildConfig({
   //email: nodemailerAdapter(),
   endpoints: [],
   globals: [Header, Footer],
-  plugins,
+  plugins: [
+    ...plugins,
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+  ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
